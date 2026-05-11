@@ -161,7 +161,5 @@ tabBtns.forEach(btn => {
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     renderGamesByTab('all-games');
-    phoneReviewsGrid.innerHTML = phoneReviews.map(renderReviewCard).join('');
-    pcPartsGrid.innerHTML = pcParts.map(renderReviewCard).join('');
     toolsGrid.innerHTML = gamesData.filter(g => g.category === 'tool').map(renderGameCard).join('');
 });
