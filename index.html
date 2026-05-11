@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="游戏攻略导航 - Steam游戏攻略、原神攻略、王者荣耀攻略、英雄联盟攻略等，包含游戏工具、辅助工具、打赏支持">
+    <meta name="keywords" content="游戏攻略, Steam攻略, 原神攻略, 王者荣耀攻略, 英雄联盟攻略, 黑神话悟空攻略, 游戏工具, 游戏辅助">
+    <title>游戏攻略导航 - Steam + 手游 + 端游攻略大全</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3573258387426742" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">🎮 游戏攻略导航</div>
+            <nav class="nav">
+                <a href="#steam">Steam</a>
+                <a href="#mobile">手游</a>
+                <a href="#pc">端游</a>
+                <a href="#tools">工具</a>
+                <a href="#donate">打赏</a>
+            </nav>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索游戏或攻略...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>最全<span class="highlight">游戏攻略</span>导航</h1>
+            <p>收录 Steam、原神、王者荣耀、英雄联盟、黑神话悟空等热门游戏攻略，含工具辅助、打赏支持</p>
+            <div class="hero-tags">
+                <span class="tag">Steam</span>
+                <span class="tag">原神</span>
+                <span class="tag">王者荣耀</span>
+                <span class="tag">英雄联盟</span>
+                <span class="tag">黑神话</span>
+            </div>
+            <!-- Ad Banner -->
+            <div class="ad-banner">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3573258387426742"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steam Games -->
+    <section id="steam" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">🕹️ Steam 游戏攻略</h2>
+            <p class="section-desc">热门 Steam 单机/联机游戏攻略大全</p>
+            <div class="games-grid" id="steamGames"></div>
+        </div>
+    </section>
+
+    <!-- Mobile Games -->
+    <section id="mobile" class="section">
+        <div class="container">
+            <h2 class="section-title">📱 手游攻略</h2>
+            <p class="section-desc">原神、王者荣耀、崩坏星穹铁道等热门手游</p>
+            <div class="games-grid" id="mobileGames"></div>
+        </div>
+    </section>
+
+    <!-- PC Games -->
+    <section id="pc" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">💻 端游攻略</h2>
+            <p class="section-desc">英雄联盟、云顶之弈、LOL、Dota2 等电竞游戏</p>
+            <div class="games-grid" id="pcGames"></div>
+        </div>
+    </section>
+
+    <!-- Ad Section -->
+    <section class="section">
+        <div class="container">
+            <div class="ad-responsive">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3573258387426742"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">🛠️ 游戏工具</h2>
+            <p class="section-desc">游戏助手、辅助工具、模拟器、帧率优化等</p>
+            <div class="games-grid" id="gameTools"></div>
+        </div>
+    </section>
+
+    <!-- All Games -->
+    <section id="all" class="section">
+        <div class="container">
+            <h2 class="section-title">📋 全部游戏</h2>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="steam">Steam</button>
+                <button class="filter-btn" data-filter="mobile">手游</button>
+                <button class="filter-btn" data-filter="pc">端游</button>
+                <button class="filter-btn" data-filter="tool">工具</button>
+            </div>
+            <div class="games-grid" id="allGames"></div>
+        </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section id="donate" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">💝 支持一下</h2>
+            <p class="section-desc" style="color: #94a3b8;">如果攻略对你有帮助，可以扫码打赏支持一下</p>
+            <div class="donate-grid">
+                <div class="donate-card">
+                    <div class="donate-icon">💚</div>
+                    <h3>微信支付</h3>
+                    <p>扫码给我加个鸡腿</p>
+                    <div class="qr-code">
+                        <img src="wechat-qr.jpeg" alt="微信收款码" width="200">
+                    </div>
+                </div>
+                <div class="donate-card">
+                    <div class="donate-icon">💙</div>
+                    <h3>支付宝</h3>
+                    <p>扫码请我喝杯奶茶</p>
+                    <div class="qr-code">
+                        <img src="alipay-qr.jpeg" alt="支付宝收款码" width="200">
+                    </div>
+                </div>
+            </div>
+            <p class="donate-note">所有收益将用于网站服务器和域名续费，感谢支持！</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🎮 游戏攻略导航</h3>
+                    <p>收录最全的游戏攻略、工具辅助、打赏支持</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#steam">Steam攻略</a></li>
+                        <li><a href="#mobile">手游攻略</a></li>
+                        <li><a href="#pc">端游攻略</a></li>
+                        <li><a href="#tools">游戏工具</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>打赏支持</h4>
+                    <ul>
+                        <li><a href="#donate">微信打赏</a></li>
+                        <li><a href="#donate">支付宝打赏</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 游戏攻略导航. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
