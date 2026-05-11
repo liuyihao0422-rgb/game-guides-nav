@@ -13,6 +13,17 @@ const gamesData = [
     { id: 6, name: "幻兽帕鲁", icon: "🦊", category: "steam", typeName: "Steam", description: "开放世界生存建造游戏，捕捉幻兽。含帕鲁分布、合成配方、基地建设攻略。", tags: ["生存", "建造", "捕捉"], badge: "new", link: "https://www.gamersky.com/palworld/" },
     { id: 7, name: "只狼", icon: "🎯", category: "steam", typeName: "Steam", description: "宫崎英高代表作，刀剑动作游戏。含全Boss打法、义手技能、结局攻略。", tags: ["魂类", "动作", "忍者"], badge: "", link: "https://www.gamersky.com/sekiro/" },
     { id: 8, name: "怪物猎人世界", icon: "🐉", category: "steam", typeName: "Steam", description: "共斗狩猎游戏，经典IP最新作。含全怪物弱点、装备配装、珠子获取攻略。", tags: ["狩猎", "共斗", "装备"], badge: "",        link: "https://www.gamersky.com/gl/"},
+    { id: 25, name: "卧龙苍天陨落", icon: "🐉", category: "steam", typeName: "Steam", description: "三国动作RPG，与仁王同一世界观。含全Boss打法、士气机制、红神兽获取攻略。", tags: ["三国", "动作", "魂类"], badge: "hot", link: "https://www.gamersky.com/wolong/" },
+    { id: 26, name: "原子之心", icon: "🔬", category: "steam", typeName: "Steam", description: "苏联科幻FPS射击游戏，赛博朋克风格。含全剧情流程、收集中枢、成就攻略。", tags: ["苏联", "科幻", "FPS"], badge: "new", link: "https://www.gamersky.com/atomic/" },
+    { id: 27, name: "装甲核心6境界天火", icon: "🤖", category: "steam", typeName: "Steam", description: "FS社机甲动作游戏，艾碧斯作品。含全机甲配装、武器获取、Boss打法攻略。", tags: ["机甲", "动作", "艾碧斯"], badge: "hot", link: "https://www.gamersky.com/ac6/" },
+    { id: 28, name: "遗迹灰烬重生", icon: "🌿", category: "steam", typeName: "Steam", description: "第三人称射击魂类游戏，Twisted Round作品。含全Boss打法、世界线、武器配装攻略。", tags: ["魂类", "射击", "合作"], badge: "", link: "https://www.gamersky.com/re/" },
+    { id: 29, name: "匹诺曹的谎言", icon: "🎭", category: "steam", typeName: "Steam", description: "韩国类魂动作游戏，匹诺曹童话风格。含全Boss打法、军团武器、结局攻略。", tags: ["类魂", "动作", "韩国"], badge: "new", link: "https://www.gamersky.com/pinocchio/" },
+    { id: 30, name: "堕落之主", icon: "👻", category: "steam", typeName: "Steam", description: "类魂动作RPG，暗黑风格。含全Boss打法、传说技、隐藏道具攻略。", tags: ["类魂", "暗黑", "动作"], badge: "", link: "https://www.gamersky.com/lor/" },
+    { id: 31, name: "死亡空间重制版", icon: "🚀", category: "steam", typeName: "Steam", description: "EA科幻恐怖射击游戏重制版。含全流程、收集品、秘密房间攻略。", tags: ["恐怖", "射击", "科幻"], badge: "", link: "https://www.gamersky.com/deadspace/" },
+    { id: 32, name: "生化危机4重制版", icon: "🧟", category: "steam", typeName: "Steam", description: "卡普空经典恐怖射击游戏重制版。含全流程、武器升级、全宝藏收集攻略。", tags: ["恐怖", "射击", "重制"], badge: "hot", link: "https://www.gamersky.com/re4/" },
+    { id: 33, name: "波斯王子失落的王冠", icon: "⚔️", category: "steam", typeName: "Steam", description: "波斯王子系列新作，银河城风格。含全技能、全碎片、结局攻略。", tags: ["波斯王子", "银河城", "动作"], badge: "new", link: "https://www.gamersky.com/prince/" },
+    { id: 34, name: "龙之信条2", icon: "🐉", category: "steam", typeName: "Steam", description: "卡普空开放世界动作RPG，DD2最新作。含全职业、随从、隐藏职业攻略。", tags: ["开放世界", "动作", "RPG"], badge: "", link: "https://www.gamersky.com/dragonsdogma2/" },
+    { id: 35, name: "遗迹与被杀", icon: "⚔️", category: "steam", typeName: "Steam", description: "2D魂类银河城游戏，高难度独立游戏。含全Boss打法、全碎片、隐藏关卡攻略。", tags: ["魂类", "银河城", "独立"], badge: "", link: "https://www.gamersky.com/remnant/" },
 
     // ===== 手游 =====
     { id: 9, name: "原神", icon: "🌟", category: "mobile-game", typeName: "手游", description: "米哈游开放世界RPG，提瓦特冒险。含全角色养成、圣遗物配装、任务攻略。", tags: ["米哈游", "开放世界", "抽卡"], badge: "hot", link: "https://bbs.mihoyo.com/ys/" },
