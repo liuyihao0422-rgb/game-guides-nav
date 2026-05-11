@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="游戏攻略导航 - Steam游戏攻略、原神攻略、王者荣耀攻略、英雄联盟攻略等，包含游戏工具、辅助工具、打赏支持">
-    <meta name="keywords" content="游戏攻略, Steam攻略, 原神攻略, 王者荣耀攻略, 英雄联盟攻略, 黑神话悟空攻略, 游戏工具, 游戏辅助">
-    <title>游戏攻略导航 - Steam + 手游 + 端游攻略大全</title>
+    <meta name="description" content="游戏攻略导航 - Steam/手游/端游攻略、手机测评、电脑配件性能测评，推荐适合不同设备的游戏">
+    <meta name="keywords" content="游戏攻略, Steam攻略, 手机测评, 电脑配件, 性能测评, 游戏外设, 原神攻略, 黑神话悟空攻略">
+    <title>游戏攻略导航 - 游戏攻略 + 手机测评 + 电脑配件测评</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3573258387426742" crossorigin="anonymous"></script>
@@ -16,14 +16,14 @@
         <div class="container">
             <div class="logo">🎮 游戏攻略导航</div>
             <nav class="nav">
-                <a href="#steam">Steam</a>
-                <a href="#mobile">手游</a>
-                <a href="#pc">端游</a>
+                <a href="#games">游戏</a>
+                <a href="#phone">手机测评</a>
+                <a href="#pc-parts">电脑配件</a>
                 <a href="#tools">工具</a>
                 <a href="#donate">打赏</a>
             </nav>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜索游戏或攻略...">
+                <input type="text" id="searchInput" placeholder="搜索游戏/设备/配件...">
             </div>
         </div>
     </header>
@@ -31,14 +31,14 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>最全<span class="highlight">游戏攻略</span>导航</h1>
-            <p>收录 Steam、原神、王者荣耀、英雄联盟、黑神话悟空等热门游戏攻略，含工具辅助、打赏支持</p>
+            <h1>游戏攻略 + <span class="highlight">设备测评</span>导航</h1>
+            <p>收录 Steam/手游/端游攻略、手机测评、电脑配件性能测评，推荐适合不同设备的游戏</p>
             <div class="hero-tags">
-                <span class="tag">Steam</span>
-                <span class="tag">原神</span>
-                <span class="tag">王者荣耀</span>
-                <span class="tag">英雄联盟</span>
-                <span class="tag">黑神话</span>
+                <span class="tag">游戏攻略</span>
+                <span class="tag">手机测评</span>
+                <span class="tag">电脑配件</span>
+                <span class="tag">性能测试</span>
+                <span class="tag">游戏推荐</span>
             </div>
             <!-- Ad Banner -->
             <div class="ad-banner">
@@ -52,30 +52,38 @@
         </div>
     </section>
 
-    <!-- Steam Games -->
-    <section id="steam" class="section bg-light">
+    <!-- Games Section -->
+    <section id="games" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">🕹️ Steam 游戏攻略</h2>
-            <p class="section-desc">热门 Steam 单机/联机游戏攻略大全</p>
-            <div class="games-grid" id="steamGames"></div>
+            <h2 class="section-title">🕹️ 游戏攻略</h2>
+            <p class="section-desc">Steam/手游/端游热门游戏攻略大全</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="all-games">全部</button>
+                <button class="tab-btn" data-tab="steam">Steam</button>
+                <button class="tab-btn" data-tab="mobile-game">手游</button>
+                <button class="tab-btn" data-tab="pc-game">端游</button>
+            </div>
+            
+            <div class="games-grid" id="gamesGrid"></div>
         </div>
     </section>
 
-    <!-- Mobile Games -->
-    <section id="mobile" class="section">
+    <!-- Phone Review Section -->
+    <section id="phone" class="section">
         <div class="container">
-            <h2 class="section-title">📱 手游攻略</h2>
-            <p class="section-desc">原神、王者荣耀、崩坏星穹铁道等热门手游</p>
-            <div class="games-grid" id="mobileGames"></div>
+            <h2 class="section-title">📱 手机测评</h2>
+            <p class="section-desc">游戏手机性能测评，什么手机适合玩什么游戏</p>
+            <div class="reviews-grid" id="phoneReviews"></div>
         </div>
     </section>
 
-    <!-- PC Games -->
-    <section id="pc" class="section bg-light">
+    <!-- PC Parts Section -->
+    <section id="pc-parts" class="section bg-light">
         <div class="container">
-            <h2 class="section-title">💻 端游攻略</h2>
-            <p class="section-desc">英雄联盟、云顶之弈、LOL、Dota2 等电竞游戏</p>
-            <div class="games-grid" id="pcGames"></div>
+            <h2 class="section-title">💻 电脑配件测评</h2>
+            <p class="section-desc">显卡/内存/处理器性能测评，适配什么游戏</p>
+            <div class="reviews-grid" id="pcParts"></div>
         </div>
     </section>
 
@@ -97,23 +105,8 @@
     <section id="tools" class="section bg-light">
         <div class="container">
             <h2 class="section-title">🛠️ 游戏工具</h2>
-            <p class="section-desc">游戏助手、辅助工具、模拟器、帧率优化等</p>
-            <div class="games-grid" id="gameTools"></div>
-        </div>
-    </section>
-
-    <!-- All Games -->
-    <section id="all" class="section">
-        <div class="container">
-            <h2 class="section-title">📋 全部游戏</h2>
-            <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">全部</button>
-                <button class="filter-btn" data-filter="steam">Steam</button>
-                <button class="filter-btn" data-filter="mobile">手游</button>
-                <button class="filter-btn" data-filter="pc">端游</button>
-                <button class="filter-btn" data-filter="tool">工具</button>
-            </div>
-            <div class="games-grid" id="allGames"></div>
+            <p class="section-desc">加速器、帧率测试、模拟器等实用工具</p>
+            <div class="games-grid" id="toolsGrid"></div>
         </div>
     </section>
 
@@ -121,7 +114,7 @@
     <section id="donate" class="section bg-dark">
         <div class="container">
             <h2 class="section-title">💝 支持一下</h2>
-            <p class="section-desc" style="color: #94a3b8;">如果攻略对你有帮助，可以扫码打赏支持一下</p>
+            <p class="section-desc" style="color: #94a3b8;">如果内容对你有帮助，可以扫码打赏支持</p>
             <div class="donate-grid">
                 <div class="donate-card">
                     <div class="donate-icon">💚</div>
@@ -150,14 +143,14 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>🎮 游戏攻略导航</h3>
-                    <p>收录最全的游戏攻略、工具辅助、打赏支持</p>
+                    <p>游戏攻略 + 手机测评 + 电脑配件测评，为你推荐最适合的设备</p>
                 </div>
                 <div class="footer-section">
                     <h4>快速链接</h4>
                     <ul>
-                        <li><a href="#steam">Steam攻略</a></li>
-                        <li><a href="#mobile">手游攻略</a></li>
-                        <li><a href="#pc">端游攻略</a></li>
+                        <li><a href="#games">游戏攻略</a></li>
+                        <li><a href="#phone">手机测评</a></li>
+                        <li><a href="#pc-parts">电脑配件</a></li>
                         <li><a href="#tools">游戏工具</a></li>
                     </ul>
                 </div>

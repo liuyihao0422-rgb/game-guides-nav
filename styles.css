@@ -213,6 +213,32 @@ ul {
     color: var(--white);
 }
 
+/* Tabs */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
 /* Games Grid */
 .games-grid {
     display: grid;
@@ -258,20 +284,9 @@ ul {
     color: var(--dark);
 }
 
-.game-badge.hot {
-    background: #ef4444;
-    color: white;
-}
-
-.game-badge.new {
-    background: #10b981;
-    color: white;
-}
-
-.game-badge.tool {
-    background: #f59e0b;
-    color: white;
-}
+.game-badge.hot { background: #ef4444; color: white; }
+.game-badge.new { background: #10b981; color: white; }
+.game-badge.cheap { background: #f59e0b; color: white; }
 
 .game-content {
     padding: 20px;
@@ -340,30 +355,117 @@ ul {
     transform: scale(1.05);
 }
 
-/* Filter Bar */
-.filter-bar {
+/* Review Cards */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.review-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.review-header {
+    background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.review-icon {
+    font-size: 2.5rem;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-info {
+    flex: 1;
+}
+
+.review-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.review-type {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.review-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.2);
+}
+
+.review-badge.hot { background: #ef4444; }
+.review-badge.recommended { background: #f59e0b; }
+.review-badge.cheap { background: #10b981; }
+
+.review-body {
+    padding: 20px;
+}
+
+.review-desc {
+    color: var(--gray);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.review-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 30px;
+    gap: 6px;
+    margin-bottom: 15px;
 }
 
-.filter-btn {
-    background: var(--white);
-    border: 1px solid var(--gray);
-    padding: 8px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: var(--transition);
-    font-weight: 500;
+.review-tag {
+    background: var(--light);
+    color: var(--gray);
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-    background: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
+.review-games {
+    background: #fef3c7;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #92400e;
+    margin-bottom: 10px;
+}
+
+.review-games strong {
+    color: #b45309;
+}
+
+.review-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
 }
 
 /* Donate Section */
@@ -501,23 +603,19 @@ ul {
         font-size: 1.5rem;
     }
     
-    .games-grid {
+    .games-grid,
+    .reviews-grid {
         grid-template-columns: 1fr;
     }
 }
 
 /* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.game-card {
+.game-card,
+.review-card {
     animation: fadeIn 0.5s ease forwards;
 }
