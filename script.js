@@ -6,13 +6,13 @@
 const gamesData = [
     // ===== Steam 游戏 =====
     { id: 1, name: "黑神话悟空", icon: "🐒", category: "steam", typeName: "Steam", description: "国产3A动作游戏，取经之路，斩妖除魔。包含全剧情流程、Boss打法、技能加点攻略。", tags: ["国产3A", "动作", "西游记"], badge: "hot", link: "https://www.gamersky.com/gl/" },
-    { id: 2, name: "艾尔登法环", icon: "⚔️", category: "steam", typeName: "Steam", description: "宫崎英高新作，开放世界魂类游戏。含全地图探索、赐福点、骨灰获取攻略。", tags: ["魂类", "开放世界", "硬核"], badge: "hot", link: "https://www.gamersky.com/elden-ring/" },
+    { id: 2, name: "艾尔登法环", icon: "⚔️", category: "steam", typeName: "Steam", description: "宫崎英高新作，开放世界魂类游戏。含全地图探索、赐福点、骨灰获取攻略。", tags: ["魂类", "开放世界", "硬核"], badge: "hot",        link: "https://www.gamersky.com/gl/"},
     { id: 3, name: "霍格沃茨之遗", icon: "🪄", category: "steam", typeName: "Steam", description: "哈利波特世界观RPG，魔法世界探索。含全支线任务、收藏品、成就攻略。", tags: ["哈利波特", "RPG", "魔法"], badge: "", link: "https://www.gamersky.com/hogwarts-legacy/" },
     { id: 4, name: "赛博朋克2077", icon: "🌃", category: "steam", typeName: "Steam", description: "CDPR科幻RPG，夜之城冒险。含全任务流程、义体升级、结局攻略。", tags: ["赛博朋克", "RPG", "科幻"], badge: "", link: "https://www.gamersky.com/cyberpunk2077/" },
     { id: 5, name: "博德之门3", icon: "🛡️", category: "steam", typeName: "Steam", description: "经典D&D跑团RPG，拉瑞安最新作。含全剧情、队友任务、战斗攻略。", tags: ["D&D", "RPG", "跑团"], badge: "hot", link: "https://www.gamersky.com/baldurs-gate-3/" },
     { id: 6, name: "幻兽帕鲁", icon: "🦊", category: "steam", typeName: "Steam", description: "开放世界生存建造游戏，捕捉幻兽。含帕鲁分布、合成配方、基地建设攻略。", tags: ["生存", "建造", "捕捉"], badge: "new", link: "https://www.gamersky.com/palworld/" },
     { id: 7, name: "只狼", icon: "🎯", category: "steam", typeName: "Steam", description: "宫崎英高代表作，刀剑动作游戏。含全Boss打法、义手技能、结局攻略。", tags: ["魂类", "动作", "忍者"], badge: "", link: "https://www.gamersky.com/sekiro/" },
-    { id: 8, name: "怪物猎人世界", icon: "🐉", category: "steam", typeName: "Steam", description: "共斗狩猎游戏，经典IP最新作。含全怪物弱点、装备配装、珠子获取攻略。", tags: ["狩猎", "共斗", "装备"], badge: "", link: "https://www.gamersky.com/mhw/" },
+    { id: 8, name: "怪物猎人世界", icon: "🐉", category: "steam", typeName: "Steam", description: "共斗狩猎游戏，经典IP最新作。含全怪物弱点、装备配装、珠子获取攻略。", tags: ["狩猎", "共斗", "装备"], badge: "",        link: "https://www.gamersky.com/gl/"},
 
     // ===== 手游 =====
     { id: 9, name: "原神", icon: "🌟", category: "mobile-game", typeName: "手游", description: "米哈游开放世界RPG，提瓦特冒险。含全角色养成、圣遗物配装、任务攻略。", tags: ["米哈游", "开放世界", "抽卡"], badge: "hot", link: "https://bbs.mihoyo.com/ys/" },
@@ -30,9 +30,9 @@ const gamesData = [
     { id: 19, name: "无畏契约", icon: "💥", category: "pc-game", typeName: "端游", description: "腾讯FPS竞技游戏，瓦罗兰特。含英雄技能、枪械设置、战术攻略。", tags: ["FPS", "竞技", "腾讯"], badge: "new", link: "https://valorant.qq.com/" },
 
     // ===== 游戏工具 =====
-    { id: 20, name: "Steam加速器", icon: "🚀", category: "tool", typeName: "工具", description: "Steam下载加速、联机加速工具汇总，告别下载慢、联机卡顿问题。", tags: ["Steam", "加速", "下载"], badge: "", link: "https://www.steampower.cn/" },
+    { id: 20, name: "Steam加速器", icon: "🚀", category: "tool", typeName: "工具", description: "Steam下载加速、联机加速工具汇总，告别下载慢、联机卡顿问题。", tags: ["Steam", "加速", "下载"], badge: "",        link: "https://steampp.net"},
     { id: 21, name: "游戏帧率测试", icon: "📊", category: "tool", typeName: "工具", description: "MSI Afterburner、CapFrameX 等帧率监控工具，测试游戏性能表现。", tags: ["帧率", "测试", "性能"], badge: "", link: "https://www.msi.com/" },
-    { id: 22, name: "Switch模拟器", icon: "🎮", category: "tool", typeName: "工具", description: "Yuzu、Ryujinx 等Switch模拟器，PC上畅玩Switch游戏。", tags: ["Switch", "模拟器", "PC"], badge: "", link: "https://yuzu-emu.org/" },
+    { id: 22, name: "Switch模拟器", icon: "🎮", category: "tool", typeName: "工具", description: "Yuzu、Ryujinx 等Switch模拟器，PC上畅玩Switch游戏。", tags: ["Switch", "模拟器", "PC"], badge: "",        link: "https://www.ryujinx.org/"},
     { id: 23, name: "游戏地图查询", icon: "🗺️", category: "tool", typeName: "工具", description: "艾尔登法环、原神、塞尔达等游戏地图查询，标注所有隐藏要素。", tags: ["地图", "查询", "攻略"], badge: "", link: "https://www.gamersky.com/" },
     { id: 24, name: "游戏手柄设置", icon: "🎮", category: "tool", typeName: "工具", description: "Steam Input、Xpadder 等手柄映射工具，让手柄适配所有PC游戏。", tags: ["手柄", "映射", "PC"], badge: "", link: "https://store.steampowered.com/steamcontrollers" }
 ];
