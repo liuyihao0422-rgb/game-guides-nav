@@ -3,119 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI生成PPT - 输入提示词快速生成PPT内容，支持多种场景模板，帮助你快速制作专业演示文稿">
-    <meta name="keywords" content="AI生成PPT, PPT生成器, AI制作PPT, 演示文稿生成, PPT模板, AI幻灯片">
-    <title>AI生成PPT - 输入提示词快速制作演示文稿</title>
+    <meta name="description" content="PPT公园 - 聚合最全的AI生成PPT、PPT模板、PPT工具和教程，一站解决你的PPT需求">
+    <meta name="keywords" content="PPT模板, AI生成PPT, PPT工具, PPT制作, 演示文稿, Gamma, Tome, ChatPPT">
+    <title>PPT公园 - AI生成PPT与模板工具聚合站</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3573258387426742" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="logo">📊 AI生成PPT</div>
+            <div class="logo">🎨 PPT公园</div>
             <nav class="nav">
-                <a href="#generator">生成器</a>
-                <a href="#templates">模板</a>
-                <a href="#tools">工具</a>
-                <a href="#guides">教程</a>
+                <a href="#scenes">场景示例</a>
+                <a href="#aitools">AI工具</a>
+                <a href="#templates">模板下载</a>
+                <a href="#guides">教程指南</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section - PPT Generator -->
-    <section id="generator" class="hero">
+    <!-- Hero -->
+    <section class="hero">
         <div class="container">
-            <h1>输入提示词，<span class="highlight">AI帮你生成PPT</span></h1>
-            <p>描述你的需求，AI自动生成PPT大纲和内容，支持多种场景和风格</p>
-            <div class="generator-box">
-                <div class="scene-tabs">
-                    <button class="scene-tab active" data-scene="work">工作汇报</button>
-                    <button class="scene-tab" data-scene="study">教育培训</button>
-                    <button class="scene-tab" data-scene="product">产品介绍</button>
-                    <button class="scene-tab" data-scene="plan">商业计划</button>
-                    <button class="scene-tab" data-scene="summary">总结报告</button>
-                    <button class="scene-tab" data-scene="custom">自定义</button>
-                </div>
-                <div class="input-group">
-                    <textarea id="pptPrompt" class="prompt-input" placeholder="例如：帮我生成一份年中工作汇报PPT，包含：团队成果、项目进展、下半年计划。需要10页左右，风格简洁专业。"></textarea>
-                    <div class="input-actions">
-                        <span class="char-count"><span id="charCount">0</span>/2000</span>
-                        <button class="btn-clear" id="clearBtn">清空</button>
+            <h1>🎯 找到最合适的 <span class="highlight">PPT工具</span></h1>
+            <p class="hero-desc">聚合全网最好的AI生成PPT工具、PPT模板网站和制作教程，一站搞定你的所有PPT需求</p>
+        </div>
+    </section>
+
+    <!-- Ad Banner -->
+    <div class="container">
+        <div class="ad-banner">
+            <span>广告位 · 承接各类网站广告投放</span>
+        </div>
+    </div>
+
+    <!-- Scene Examples -->
+    <section id="scenes" class="section">
+        <div class="container">
+            <h2 class="section-title">📋 PPT场景示例</h2>
+            <p class="section-desc">点击场景标签查看该类型PPT的大纲示例，了解各工具生成效果</p>
+            
+            <div class="scene-grid">
+                <div id="sceneList" class="scene-list"></div>
+                <div class="scene-preview">
+                    <div id="result" class="result-box" style="display:none;">
+                        <div class="result-toolbar">
+                            <button class="btn-copy" onclick="copyResult()">📋 复制内容</button>
+                        </div>
+                        <pre id="resultText" class="result-text"></pre>
                     </div>
                 </div>
-                <div class="generate-actions">
-                    <button class="btn-generate" id="generateBtn">
-                        <span class="btn-icon">✨</span>
-                        生成PPT内容
-                    </button>
-                    <button class="btn-examples" id="exampleBtn">看示例</button>
-                </div>
-            </div>
-            <!-- Ad Banner -->
-            <div class="ad-banner">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3573258387426742"
-                     data-ad-slot="XXXXXXXXXX"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
             </div>
         </div>
     </section>
 
-    <!-- Generated Result Section -->
-    <section id="result" class="section bg-light result-section" style="display:none;">
+    <!-- AI PPT Tools -->
+    <section id="aitools" class="section bg-white">
         <div class="container">
-            <h2 class="section-title">📋 生成的PPT内容</h2>
-            <p class="section-desc">以下是AI根据你的需求生成的PPT大纲和详细内容</p>
-            <div class="result-toolbar">
-                <button class="btn-copy" id="copyResult">复制内容</button>
-                <button class="btn-download" id="downloadResult">下载为文本</button>
-            </div>
-            <div class="result-content" id="resultContent"></div>
+            <h2 class="section-title">🤖 AI生成PPT工具</h2>
+            <p class="section-desc">输入主题，AI自动生成完整PPT演示文稿，支持在线编辑</p>
+            <div id="aiToolsGrid" class="tools-grid"></div>
         </div>
     </section>
 
-    <!-- Templates Section -->
+    <!-- Ad Banner -->
+    <div class="container">
+        <div class="ad-banner">
+            <span>广告位 · 承接各类网站广告投放</span>
+        </div>
+    </div>
+
+    <!-- PPT Template Sites -->
     <section id="templates" class="section">
         <div class="container">
-            <h2 class="section-title">🎨 PPT模板场景</h2>
-            <p class="section-desc">选择适合你的场景，快速生成对应风格的PPT</p>
-            <div class="templates-grid" id="templatesGrid"></div>
+            <h2 class="section-title">📥 PPT模板下载</h2>
+            <p class="section-desc">海量精美PPT模板免费下载，覆盖各行业各场景</p>
+            <div id="templateGrid" class="tools-grid"></div>
         </div>
     </section>
 
-    <!-- Ad Section -->
-    <section class="section">
+    <!-- Guides -->
+    <section id="guides" class="section bg-white">
         <div class="container">
-            <div class="ad-responsive">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3573258387426742"
-                     data-ad-slot="XXXXXXXXXX"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI PPT Tools Section -->
-    <section id="tools" class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">🛠️ AI PPT制作工具</h2>
-            <p class="section-desc">收录主流AI PPT生成工具，一站式制作演示文稿</p>
-            <div class="tools-grid" id="toolsGrid"></div>
-        </div>
-    </section>
-
-    <!-- Guides Section -->
-    <section id="guides" class="section">
-        <div class="container">
-            <h2 class="section-title">📚 PPT制作教程</h2>
-            <p class="section-desc">学习如何用AI高效制作专业PPT</p>
-            <div class="guides-grid" id="guidesGrid"></div>
+            <h2 class="section-title">📚 PPT教程指南</h2>
+            <p class="section-desc">从入门到精通，学习PPT制作技巧和AI辅助制作方法</p>
+            <div id="guidesGrid" class="guides-grid"></div>
         </div>
     </section>
 
@@ -124,36 +97,45 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>📊 AI生成PPT</h3>
-                    <p>输入提示词，AI帮你快速生成专业演示文稿内容</p>
+                    <h3>🎨 PPT公园</h3>
+                    <p>聚合全网最优质的PPT工具、模板和教程资源，帮助你高效制作专业演示文稿。</p>
+                    <p style="margin-top:10px;color:#94a3b8;font-size:0.85rem;">分享优质工具，节省创作时间</p>
                 </div>
                 <div class="footer-section">
                     <h4>快速链接</h4>
                     <ul>
-                        <li><a href="#generator">PPT生成器</a></li>
-                        <li><a href="#templates">模板场景</a></li>
-                        <li><a href="#tools">制作工具</a></li>
-                        <li><a href="#guides">制作教程</a></li>
+                        <li><a href="#scenes">场景示例</a></li>
+                        <li><a href="#aitools">AI工具</a></li>
+                        <li><a href="#templates">模板下载</a></li>
+                        <li><a href="#guides">教程指南</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>热门工具</h4>
+                    <h4>推荐工具</h4>
                     <ul>
-                        <li><a href="#tools">Gamma</a></li>
-                        <li><a href="#tools">Tome</a></li>
-                        <li><a href="#tools">Beautiful.ai</a></li>
+                        <li><a href="https://gamma.app" target="_blank">Gamma AI</a></li>
+                        <li><a href="https://tome.us" target="_blank">Tome</a></li>
+                        <li><a href="https://chatppt.yoo-ai.com" target="_blank">ChatPPT</a></li>
+                        <li><a href="https://sankki.cn" target="_blank">闪击PPT</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 AI生成PPT. All rights reserved.</p>
+                <p>© 2024 PPT公园 · 仅供学习交流，请勿商用</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
+        function copyResult() {
+            const text = document.getElementById('resultText')?.textContent || '';
+            navigator.clipboard.writeText(text).then(() => {
+                alert('内容已复制到剪贴板！');
+            }).catch(() => {
+                alert('复制失败，请手动选择复制');
+            });
+        }
     </script>
 </body>
 </html>
