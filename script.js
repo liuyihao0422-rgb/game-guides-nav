@@ -1,165 +1,623 @@
 // ========================================
-// 游戏攻略导航 - Data & Logic
+// AI生成PPT - 数据和逻辑
 // ========================================
 
-// 游戏数据库
-const gamesData = [
-    // ===== Steam 游戏 =====
-    { id: 1, name: "黑神话悟空", icon: "🐒", category: "steam", typeName: "Steam", description: "国产3A动作游戏，取经之路，斩妖除魔。包含全剧情流程、Boss打法、技能加点攻略。", tags: ["国产3A", "动作", "西游记"], badge: "hot", link: "https://so.gamersky.com/search?kw=黑神话悟空" },
-    { id: 2, name: "艾尔登法环", icon: "⚔️", category: "steam", typeName: "Steam", description: "宫崎英高新作，开放世界魂类游戏。含全地图探索、赐福点、骨灰获取攻略。", tags: ["魂类", "开放世界", "硬核"], badge: "hot", link: "https://so.gamersky.com/search?kw=艾尔登法环" },
-    { id: 3, name: "霍夫沃茨之遗", icon: "🪄", category: "steam", typeName: "Steam", description: "哈利波特世界观RPG，魔法世界探索。含全支线任务、收藏品、成就攻略。", tags: ["哈利波特", "RPG", "魔法"], badge: "", link: "https://so.gamersky.com/search?kw=霍夫沃茨之遗" },
-    { id: 4, name: "赛博朋克2077", icon: "🌃", category: "steam", typeName: "Steam", description: "CDPR科幻RPG，夜之城冒险。含全任务流程、义体升级、结局攻略。", tags: ["赛博朋克", "RPG", "科幻"], badge: "", link: "https://so.gamersky.com/search?kw=赛博朋克2077" },
-    { id: 5, name: "博德之门3", icon: "🛡️", category: "steam", typeName: "Steam", description: "经典D&D跑团RPG，拉瑞安最新作。含全剧情、队友任务、战斗攻略。", tags: ["D&D", "RPG", "跑团"], badge: "hot", link: "https://so.gamersky.com/search?kw=博德之门3" },
-    { id: 6, name: "幻兽帕鲁", icon: "🦊", category: "steam", typeName: "Steam", description: "开放世界生存建造游戏，捕捉幻兽。含帕鲁分布、合成配方、基地建设攻略。", tags: ["生存", "建造", "捕捉"], badge: "new", link: "https://so.gamersky.com/search?kw=幻兽帕鲁" },
-    { id: 7, name: "只狼", icon: "🎯", category: "steam", typeName: "Steam", description: "宫崎英高代表作，刀剑动作游戏。含全Boss打法、义手技能、结局攻略。", tags: ["魂类", "动作", "忍者"], badge: "", link: "https://so.gamersky.com/search?kw=只狼" },
-    { id: 8, name: "怪物猎人世界", icon: "🐉", category: "steam", typeName: "Steam", description: "共斗狩猎游戏，经典IP最新作。含全怪物弱点、装备配装、珠子获取攻略。", tags: ["狩猎", "共斗", "装备"], badge: "", link: "https://so.gamersky.com/search?kw=怪物猎人世界" },
-    { id: 25, name: "卧龙苍天陨落", icon: "🐉", category: "steam", typeName: "Steam", description: "三国动作RPG，与仁王同一世界观。含全Boss打法、士气机制、红神兽获取攻略。", tags: ["三国", "动作", "魂类"], badge: "hot", link: "https://so.gamersky.com/search?kw=卧龙苍天陨落" },
-    { id: 26, name: "原子之心", icon: "🔬", category: "steam", typeName: "Steam", description: "苏联科幻FPS射击游戏，赛博朋克风格。含全剧情流程、收集中枢、成就攻略。", tags: ["苏联", "科幻", "FPS"], badge: "new", link: "https://so.gamersky.com/search?kw=原子之心" },
-    { id: 27, name: "装甲核心6境界天火", icon: "🤖", category: "steam", typeName: "Steam", description: "FS社机甲动作游戏，艾碧斯作品。含全机甲配装、武器获取、Boss打法攻略。", tags: ["机甲", "动作", "艾碧斯"], badge: "hot", link: "https://so.gamersky.com/search?kw=装甲核心6" },
-    { id: 28, name: "遗迹灰烬重生", icon: "🌿", category: "steam", typeName: "Steam", description: "第三人称射击魂类游戏，Twisted Round作品。含全Boss打法、世界线、武器配装攻略。", tags: ["魂类", "射击", "合作"], badge: "", link: "https://so.gamersky.com/search?kw=遗迹灰烬重生" },
-    { id: 29, name: "匹诺曹的谎言", icon: "🎭", category: "steam", typeName: "Steam", description: "韩国类魂动作游戏，匹诺曹童话风格。含全Boss打法、军团武器、结局攻略。", tags: ["类魂", "动作", "韩国"], badge: "new", link: "https://so.gamersky.com/search?kw=匹诺曹的谎言" },
-    { id: 30, name: "堕落之主", icon: "👻", category: "steam", typeName: "Steam", description: "类魂动作RPG，暗黑风格。含全Boss打法、传说技、隐藏道具攻略。", tags: ["类魂", "暗黑", "动作"], badge: "", link: "https://so.gamersky.com/search?kw=堕落之主" },
-    { id: 31, name: "死亡空间重制版", icon: "🚀", category: "steam", typeName: "Steam", description: "EA科幻恐怖射击游戏重制版。含全流程、收集品、秘密房间攻略。", tags: ["恐怖", "射击", "科幻"], badge: "", link: "https://so.gamersky.com/search?kw=死亡空间重制版" },
-    { id: 32, name: "生化危机4重制版", icon: "🧟", category: "steam", typeName: "Steam", description: "卡普空经典恐怖射击游戏重制版。含全流程、武器升级、全宝藏收集攻略。", tags: ["恐怖", "射击", "重制"], badge: "hot", link: "https://so.gamersky.com/search?kw=生化危机4重制版" },
-    { id: 33, name: "波斯王子失落的王冠", icon: "⚔️", category: "steam", typeName: "Steam", description: "波斯王子系列新作，银河城风格。含全技能、全碎片、结局攻略。", tags: ["波斯王子", "银河城", "动作"], badge: "new", link: "https://so.gamersky.com/search?kw=波斯王子失落的王冠" },
-    { id: 34, name: "龙之信条2", icon: "🐉", category: "steam", typeName: "Steam", description: "卡普空开放世界动作RPG，DD2最新作。含全职业、随从、隐藏职业攻略。", tags: ["开放世界", "动作", "RPG"], badge: "", link: "https://so.gamersky.com/search?kw=龙之信条2" },
-    { id: 35, name: "遗迹与被杀", icon: "⚔️", category: "steam", typeName: "Steam", description: "2D魂类银河城游戏，高难度独立游戏。含全Boss打法、全碎片、隐藏关卡攻略。", tags: ["魂类", "银河城", "独立"], badge: "", link: "https://so.gamersky.com/search?kw=遗迹与被杀" },
-
-    // ===== 手游 =====
-    { id: 9, name: "原神", icon: "🌟", category: "mobile-game", typeName: "手游", description: "米哈游开放世界RPG，提瓦特冒险。含全角色养成、圣遗物配装、任务攻略。", tags: ["米哈游", "开放世界", "抽卡"], badge: "hot", link: "https://bbs.mihoyo.com/ys/" },
-    { id: 10, name: "王者荣耀", icon: "👑", category: "mobile-game", typeName: "手游", description: "腾讯MOBA手游，5v5对战。含英雄出装、连招技巧、对线攻略。", tags: ["MOBA", "腾讯", "电竞"], badge: "hot", link: "https://pvp.qq.com/" },
-    { id: 11, name: "崩坏星穹铁道", icon: "🚄", category: "mobile-game", typeName: "手游", description: "米哈游回合制RPG，星际冒险。含全角色培养，光锥配装、行迹升级攻略。", tags: ["米哈游", "回合制", "抽卡"], badge: "new", link: "https://bbs.mihoyo.com/sr/" },
-    { id: 12, name: "蛋仔派对", icon: "🥚", category: "mobile-game", typeName: "手游", description: "网易休闲竞技游戏，潮玩闯关。含地图攻略、派对技巧、皮肤获取攻略。", tags: ["休闲", "闯关", "网易"], badge: "", link: "https://ddz.163.com/" },
-    { id: 13, name: "金铲铲之战", icon: "🔧", category: "mobile-game", typeName: "手游", description: "英雄联盟云顶之弈手游，自走棋。含阵容搭配、装备合成、站位攻略。", tags: ["自走棋", "LOL", "腾讯"], badge: "", link: "https://jcc.qq.com/" },
-    { id: 14, name: "和平精英", icon: "🎯", category: "mobile-game", typeName: "手游", description: "腾讯FPS竞技游戏，生存射击。含枪械推荐、跳点选择、对枪技巧攻略。", tags: ["FPS", "射击", "腾讯"], badge: "", link: "https://gp.qq.com/" },
-
-    // ===== 端游 =====
-    { id: 15, name: "英雄联盟", icon: "⚔️", category: "pc-game", typeName: "端游", description: "拳头MOBA游戏，5v5对战经典。含英雄出装、打法技巧、版本攻略。", tags: ["MOBA", "电竞", "拳头"], badge: "hot", link: "https://lol.qq.com/" },
-    { id: 16, name: "云顶之弈", icon: "🎲", category: "pc-game", typeName: "端游", description: "英雄联盟自走棋模式。含S1-S10阵容推荐、装备合成、站位攻略。", tags: ["自走棋", "LOL", "策略"], badge: "", link: "https://lol.qq.com/" },
-    { id: 17, name: "Dota2", icon: "🛡️", category: "pc-game", typeName: "端游", description: "V社MOBA游戏，经典竞技。含英雄出装、技能加点、攻略技巧。", tags: ["MOBA", "电竞", "V社"], badge: "", link: "https://www.dota2.com.cn/" },
-    { id: 18, name: "绝地求生", icon: "🔫", category: "pc-game", typeName: "端游", description: "Steam热门吃鸡游戏，生存竞技。含枪械推荐、跳点选择、吃鸡技巧。", tags: ["吃鸡", "FPS", "生存"], badge: "", link: "https://pubg.qq.com/" },
-    { id: 19, name: "无畏契约", icon: "💥", category: "pc-game", typeName: "端游", description: "腾讯FPS竞技游戏，瓦罗兰特。含英雄技能、枪械设置、战术攻略。", tags: ["FPS", "竞技", "腾讯"], badge: "new", link: "https://valorant.qq.com/" },
-
-    // ===== 游戏工具 =====
-    { id: 20, name: "Steam加速器", icon: "🚀", category: "tool", typeName: "工具", description: "Steam下载加速、联机加速工具汇总，告别下载慢、联机卡顿问题。", tags: ["Steam", "加速", "下载"], badge: "", link: "https://www.steampowered.cn/" },
-    { id: 21, name: "游戏帧率测试", icon: "📊", category: "tool", typeName: "工具", description: "MSI Afterburner、CapFrameX 等帧率监控工具，测试游戏性能表现。", tags: ["帧率", "测试", "性能"], badge: "", link: "https://www.msi.com/" },
-    { id: 22, name: "Switch模拟器", icon: "🎮", category: "tool", typeName: "工具", description: "Ryujinx 等Switch模拟器，PC上畅玩Switch游戏。", tags: ["Switch", "模拟器", "PC"], badge: "", link: "https://ryujinx.org/" },
-    { id: 23, name: "游戏地图查询", icon: "🗺️", category: "tool", typeName: "工具", description: "艾尔登法环、原神、塞尔达等游戏地图查询，标注所有隐藏要素。", tags: ["地图", "查询", "攻略"], badge: "", link: "https://so.gamersky.com/search?kw=游戏地图" },
-    { id: 24, name: "游戏手柄设置", icon: "🎮", category: "tool", typeName: "工具", description: "Steam Input、Xpadder 等手柄映射工具，让手柄适配所有PC游戏。", tags: ["手柄", "映射", "PC"], badge: "", link: "https://www.steampowered.com/steamcontrollers" }
+// 模板场景数据
+const templatesData = [
+    { id: 1, name: "工作汇报", icon: "📊", description: "季度/年度工作汇报、项目进展汇报、部门总结等", pages: "8-15页", style: "简洁专业", badge: "hot", example: "帮我生成一份Q3工作汇报PPT，包含：季度目标完成情况、关键成果展示、问题与挑战、下季度计划" },
+    { id: 2, name: "教育培训", icon: "🎓", description: "课程课件、培训PPT、教学演示、学术报告", pages: "10-30页", style: "清晰有条理", badge: "hot", example: "生成一份Python基础教程PPT，包含变量、数据类型、条件语句、循环、函数等内容" },
+    { id: 3, name: "产品介绍", icon: "📦", description: "产品发布、功能介绍、解决方案展示", pages: "10-20页", style: "科技感强", badge: "new", example: "帮我制作一份智能手表产品介绍PPT，包含：产品特点、核心功能、技术参数、适用场景" },
+    { id: 4, name: "商业计划", icon: "💼", description: "创业计划书、投资路演、项目提案", pages: "15-25页", style: "专业大气", badge: "hot", example: "生成一份奶茶店创业计划书PPT，包含：项目背景、市场分析、产品定位、投资预算、盈利预测" },
+    { id: 5, name: "项目方案", icon: "📋", description: "项目策划、实施方案、需求文档", pages: "10-20页", style: "逻辑清晰", badge: "", example: "帮我生成一份App开发项目方案PPT，包含：项目背景、需求分析、技术架构、开发计划、团队分工" },
+    { id: 6, name: "市场营销", icon: "📢", description: "品牌推广、活动策划、营销方案", pages: "10-20页", style: "创意吸睛", badge: "new", example: "生成一份618电商营销活动PPT，包含：活动背景、目标人群、主推产品、推广渠道、时间节点" },
+    { id: 7, name: "公司介绍", icon: "🏢", description: "企业介绍、团队展示、公司愿景", pages: "8-15页", style: "稳重专业", badge: "", example: "帮我制作一份科技公司介绍PPT，包含：公司概况、核心业务、技术优势、团队介绍、发展历程" },
+    { id: 8, name: "个人简历", icon: "📄", description: "求职简历、自我介绍、竞聘演讲", pages: "5-10页", style: "简洁有力", badge: "", example: "生成一份产品经理求职PPT，包含：个人简介、核心优势、项目经验、专业技能、职业规划" }
 ];
 
-// 手机测评数据
-const phoneReviews = [
-    { id: 101, name: "iPhone 15 Pro Max", icon: "📱", category: "phone", typeName: "手机", description: "A17 Pro芯片，3nm工艺。游戏性能顶级，原神全高60帧稳定，发热控制出色。", tags: ["苹果", "旗舰", "A17 Pro"], badge: "hot", games: "原神、王者荣耀、崩坏星穹铁道", price: "¥9999起", link: "https://www.apple.com.cn/iphone/" },
-    { id: 102, name: "小米14 Ultra", icon: "📱", category: "phone", typeName: "手机", description: "骁龙8 Gen3处理器，性能强劲。散热优秀，原神极高画质60帧无压力。", tags: ["小米", "骁龙8 Gen3", "旗舰"], badge: "hot", games: "原神、星穹铁道、和平精英", price: "¥6499起", link: "https://www.mi.com/" },
-    { id: 103, name: "红魔9 Pro+", icon: "📱", category: "phone", typeName: "手机", description: "专业游戏手机，主动散热风扇。骁龙8 Gen3，极高画质原神稳定60帧。", tags: ["游戏手机", "骁龙8 Gen3", "散热"], badge: "recommended", games: "原神、崩坏星穹铁道、所有手游", price: "¥5499起", link: "https://www.nubia.com/" },
-    { id: 104, name: "ROG Phone 8", icon: "📱", category: "phone", typeName: "手机", description: "华硕ROG游戏手机，骁龙8 Gen3。肩键设计，散热出色，游戏体验极佳。", tags: ["游戏手机", "ROG", "骁龙8 Gen3"], badge: "", games: "原神、王者荣耀、和平精英", price: "¥5999起", link: "https://www.asus.com/" },
-    { id: 105, name: "一加12", icon: "📱", category: "phone", typeName: "手机", description: "骁龙8 Gen3，哈苏影像。性能调度激进，原神极高画质流畅运行。", tags: ["一加", "骁龙8 Gen3", "旗舰"], badge: "", games: "原神、星穹铁道、金铲铲", price: "¥4299起", link: "https://www.oneplus.com/" },
-    { id: 106, name: "vivo X100 Pro", icon: "📱", category: "phone", typeName: "手机", description: "天玑9300处理器，发哥翻身之作。游戏功耗低，发热小，续航强。", tags: ["vivo", "天玑9300", "影像"], badge: "", games: "原神、崩坏星穹铁道、王者荣耀", price: "¥4999起", link: "https://www.vivo.com/" },
-    { id: 107, name: "红米K70 Pro", icon: "📱", category: "phone", typeName: "手机", description: "骁龙8 Gen3，性价比之王。游戏性能强劲，价格实惠，学生党首选。", tags: ["红米", "骁龙8 Gen3", "性价比"], badge: "cheap", games: "原神、王者荣耀、和平精英", price: "¥3299起", link: "https://www.mi.com/" },
-    { id: 108, name: "iQOO 12", icon: "📱", category: "phone", typeName: "手机", description: "骁龙8 Gen3，电竞基因。压感屏幕，KPL官方指定用机，游戏优化好。", tags: ["iQOO", "骁龙8 Gen3", "电竞"], badge: "", games: "王者荣耀、和平精英、原神", price: "¥3999起", link: "https://www.iqoo.com/" }
+// AI PPT工具数据
+const toolsData = [
+    { id: 1, name: "Gamma", icon: "📊", category: "ai-ppt", typeName: "AI演示", description: "输入文本描述，自动生成完整PPT演示文稿，支持在线编辑和协作", tags: ["AI生成", "在线协作", "多平台"], badge: "hot", link: "https://gamma.app" },
+    { id: 2, name: "Tome", icon: "📑", category: "ai-ppt", typeName: "AI演示", description: "AI驱动的PPT和故事讲述工具，支持嵌入多媒体内容", tags: ["AI叙事", "多媒体", "交互式"], badge: "hot", link: "https://tome.us" },
+    { id: 3, name: "Beautiful.ai", icon: "✨", category: "ai-ppt", typeName: "AI演示", description: "智能PPT设计工具，自动美化排版，海量模板可选", tags: ["智能排版", "模板库", "企业版"], badge: "", link: "https://www.beautiful.ai" },
+    { id: 4, name: "ChatPPT", icon: "💬", category: "ai-ppt", typeName: "AI演示", description: "国产AI PPT工具，通过对话生成PPT，支持中文", tags: ["中文AI", "对话生成", "本地化"], badge: "new", link: "https://chatppt.yoo-ai.com" },
+    { id: 5, name: "闪击PPT", icon: "⚡", category: "ai-ppt", typeName: "AI演示", description: "快速生成PPT的国产工具，适合工作汇报场景", tags: ["快速生成", "工作汇报", "国产"], badge: "", link: "https://sankki.cn" },
+    { id: 6, name: "觅知网", icon: "🔍", category: "template", typeName: "模板站", description: "海量PPT模板下载，支持各行业各场景", tags: ["模板丰富", "行业齐全", "可编辑"], badge: "hot", link: "https://www.51miz.com" },
+    { id: 7, name: "创客贴", icon: "🎨", category: "design", typeName: "设计工具", description: "在线设计平台，提供PPT模板和在线编辑功能", tags: ["在线设计", "多类型", "易上手"], badge: "", link: "https://www.chuangkit.com" },
+    { id: 8, name: "Canva", icon: "🖼️", category: "design", typeName: "设计工具", description: "全球知名在线设计工具，PPT功能强大模板丰富", tags: ["国际版", "模板多", "协作"], badge: "", link: "https://www.canva.com" }
 ];
 
-// 电脑配件测评数据
-const pcParts = [
-    { id: 201, name: "RTX 4090", icon: "🎮", category: "pc-parts", typeName: "显卡", description: "NVIDIA旗舰显卡，24GB显存。4K光追全开，所有游戏流畅运行。", tags: ["NVIDIA", "旗舰", "4K"], badge: "top", games: "黑神话悟空、赛博朋克2077、博德之门3、艾尔登法环", price: "¥15999起" },
-    { id: 202, name: "RTX 4080 SUPER", icon: "🎮", category: "pc-parts", typeName: "显卡", description: "高端显卡，16GB显存。4K高画质无压力，性价比之选。", tags: ["NVIDIA", "高端", "4K"], badge: "recommended", games: "黑神话悟空、艾尔登法环、博德之门3、原神PC", price: "¥8999起" },
-    { id: 203, name: "RTX 4070 Ti SUPER", icon: "🎮", category: "pc-parts", typeName: "显卡", description: "2K游戏天花板，16GB显存。2K分辨率所有游戏高画质流畅。", tags: ["NVIDIA", "中高端", "2K"], badge: "", games: "艾尔登法环、黑神话悟空(2K)、只狼、怪猎世界", price: "¥6499起" },
-    { id: 204, name: "RTX 4060 Ti", icon: "🎮", category: "pc-parts", typeName: "显卡", description: "1080P游戏通吃，8GB显存。主流游戏高画质，性价比高。", tags: ["NVIDIA", "主流", "1080P"], badge: "cheap", games: "王者荣耀(模拟器)、LOL、云顶之弈、艾尔登法环", price: "¥3199起" },
-    { id: 205, name: "RX 7900 XTX", icon: "🎮", category: "pc-parts", typeName: "显卡", description: "AMD旗舰，24GB显存。光栅性能强，传统游戏表现优秀。", tags: ["AMD", "旗舰", "高显存"], badge: "", games: "黑神话悟空、赛博朋克2077、博德之门3", price: "¥8999起" },
-    { id: 206, name: "i9-14900K", icon: "⚡", category: "pc-parts", typeName: "CPU", description: "Intel旗舰处理器，24核心32线程。游戏和生产力兼顾。", tags: ["Intel", "旗舰", "24核"], badge: "top", games: "所有PC游戏", price: "¥4999起" },
-    { id: 207, name: "R9-7950X3D", icon: "⚡", category: "pc-parts", typeName: "CPU", description: "AMD游戏旗舰，3D V-Cache。游戏性能极强，功耗低。", tags: ["AMD", "旗舰", "3D V-Cache"], badge: "", games: "所有PC游戏", price: "¥5499起" },
-    { id: 208, name: "i5-14600K", icon: "⚡", category: "pc-parts", typeName: "CPU", description: "Intel中高端，14核心20线程。游戏性价比之选。", tags: ["Intel", "中高端", "游戏"], badge: "cheap", games: "艾尔登法环、LOL、云顶之弈、原神PC", price: "¥2499起" },
-    { id: 209, name: "DDR5 32GB 6000", icon: "💾", category: "pc-parts", typeName: "内存", description: "主流DDR5内存，32GB双通道。游戏和专业应用兼顾。", tags: ["DDR5", "32GB", "6000MHz"], badge: "recommended", games: "所有PC游戏", price: "¥699起" },
-    { id: 210, name: "DDR5 64GB", icon: "💾", category: "pc-parts", typeName: "内存", description: "高端内存，64GB双通道。直播、游戏多开无压力。", tags: ["DDR5", "64GB", "高端"], badge: "", games: "艾尔登法环+直播、LOL+语音、所有多开", price: "¥1399起" },
-    { id: 211, name: "990 Pro 2TB", icon: "💿", category: "pc-parts", typeName: "固态", description: "三星旗舰PCIe 4.0固态，读取7000MB/s。游戏加载飞快。", tags: ["三星", "PCIe 4.0", "2TB"], badge: "", games: "所有PC游戏(秒加载)", price: "¥1299起" },
-    { id: 212, name: "海力士P41 2TB", icon: "💿", category: "pc-parts", typeName: "固态", description: "PCIe 4.0旗舰固态，国产性价比之选。游戏存储推荐。", tags: ["海力士", "PCIe 4.0", "国产"], badge: "cheap", games: "所有PC游戏(秒加载)", price: "¥899起" }
+// 教程指南数据
+const guidesData = [
+    { id: 1, name: "AI生成PPT完整教程", icon: "📖", description: "从零开始学习如何使用AI工具快速生成专业PPT，包含提示词技巧和实操演示", tags: ["入门教程", "提示词", "实操"], badge: "hot" },
+    { id: 2, name: "工作汇报PPT写法", icon: "📈", description: "如何写出让领导眼前一亮的工作汇报PPT，包含结构框架和内容技巧", tags: ["工作汇报", "框架结构", "升职加薪"], badge: "" },
+    { id: 3, name: "商业计划书PPT制作", icon: "💰", description: "创业者和投资人都在看的商业计划书PPT制作指南，附模板推荐", tags: ["创业", "融资", "商业计划"], badge: "new" },
+    { id: 4, name: "PPT配色与排版技巧", icon: "🎨", description: "如何做出配色协调、排版专业的PPT，提升视觉呈现效果", tags: ["设计", "配色", "排版"], badge: "" },
+    { id: 5, name: "教育课件制作指南", icon: "🎓", description: "老师必备的AI辅助课件制作教程，让课堂演示更生动", tags: ["教育培训", "课件", "老师"], badge: "" },
+    { id: 6, name: "产品发布会PPT要点", icon: "🚀", description: "如何制作一场成功的产品发布会PPT，包含乔布斯式演示技巧", tags: ["产品发布", "演讲", "苹果风格"], badge: "new" }
 ];
+
+// PPT生成提示词模板
+const promptTemplates = {
+    work: "请为【工作汇报】场景生成PPT内容，主题：{topic}。要求：\n1. 包含封面页、目录页\n2. 工作成果展示（3-4页）\n3. 问题分析（1-2页）\n4. 下一步计划（1-2页）\n5. 结束页\n请生成每页的标题和核心内容要点。",
+    study: "请为【教育培训】场景生成PPT内容，主题：{topic}。要求：\n1. 包含封面页、课程大纲\n2. 知识点讲解（5-8页）\n3. 案例分析（2-3页）\n4. 总结与作业\n请生成每页的标题和详细内容要点。",
+    product: "请为【产品介绍】场景生成PPT内容，主题：{topic}。要求：\n1. 包含封面页、产品概览\n2. 核心功能介绍（3-4页）\n3. 产品优势（2页）\n4. 适用场景（1-2页）\n5. 总结页\n请生成每页的标题和核心卖点。",
+    plan: "请为【商业计划】场景生成PPT内容，主题：{topic}。要求：\n1. 封面页、执行摘要\n2. 项目背景与市场分析\n3. 产品/服务介绍\n4. 商业模式与盈利预测\n5. 团队介绍\n6. 融资需求与联系方式\n请生成每页的关键内容。",
+    summary: "请为【总结报告】场景生成PPT内容，主题：{topic}。要求：\n1. 封面页、总结概览\n2. 主要成果与数据（3-4页）\n3. 经验与教训（2页）\n4. 未来展望（1-2页）\n5. 结束页\n请生成每页的标题和核心要点。",
+    custom: "请为以下主题生成PPT内容：{topic}。\n要求：\n1. 结构清晰，逻辑连贯\n2. 页数适中（8-15页）\n3. 每页包含标题和核心内容\n请生成完整的PPT大纲。"
+};
+
+// 示例内容
+const exampleResults = {
+    work: `📊 **工作汇报PPT大纲**
+
+**第1页：封面**
+标题：2024年上半年工作汇报
+副标题：市场部 | 汇报人：XXX | 日期：2024年6月
+
+**第2页：目录**
+一、上半年工作成果
+二、关键数据展示
+三、问题与挑战
+四、下半年工作计划
+
+**第3页：核心成果概览**
+• 销售额同比增长35%，完成全年目标的58%
+• 新增客户数量：120家，达成率102%
+• 成功签约3个战略级大客户
+• 品牌曝光量提升200%
+
+**第4页：重点成果-大客户拓展**
+• 成功签约XX集团（年度合同额500万+）
+• 完成XX产品线独家代理谈判
+• 建立战略合作伙伴关系
+
+**第5页：重点成果-品牌建设**
+• 举办行业峰会1场，参与人数500+
+• 新媒体矩阵粉丝增长150%
+• 获得行业权威奖项2项
+
+**第6页：数据分析**
+[图表：季度销售额趋势]
+[图表：客户行业分布]
+[图表：产品销量排行]
+
+**第7页：问题与挑战**
+• 头部客户竞争激烈，议价能力下降
+• 部分区域市场份额下滑
+• 团队人力不足，项目交付压力大
+
+**第8页：下半年计划**
+• Q3目标：完成销售额1500万
+• 重点拓展行业：新能源、医疗
+• 招募销售精英5名
+• 优化客户服务流程
+
+**第9页：需要支持**
+• 请示：增加市场预算20万
+• 需要：跨部门协作资源
+• 期待：领导战略指导
+
+**第10页：结束页**
+感谢聆听
+欢迎提问交流`,
+    study: `📚 **Python基础教程PPT大纲**
+
+**第1页：封面**
+标题：Python编程入门教程
+副标题：从零基础到写出第一个程序
+
+**第2页：课程大纲**
+1. Python简介与应用场景
+2. 环境搭建
+3. 变量与数据类型
+4. 条件语句
+5. 循环结构
+6. 函数基础
+7. 实战练习
+
+**第3页：Python简介**
+• 诞生时间：1991年，由Guido van Rossum创造
+• 设计哲学：简洁、易读、易学
+• 应用领域：Web开发、数据分析、AI、自动化
+
+**第4页：环境搭建**
+• 下载Python：python.org
+• 安装步骤详解
+• IDE推荐：PyCharm、VS Code、Jupyter Notebook
+
+**第5页：第一个程序**
+```python
+print("Hello, World!")
+```
+运行结果：Hello, World!
+
+**第6页：变量与数据类型**
+• 数字：int, float
+• 字符串：str
+• 布尔值：bool
+• 列表：list
+• 字典：dict
+
+**第7页：条件语句**
+```python
+if score >= 60:
+    print("及格")
+else:
+    print("不及格")
+```
+
+**第8页：循环结构**
+for循环：遍历列表
+while循环：条件循环
+
+**第9页：函数基础**
+```python
+def greet(name):
+    return f"Hello, {name}!"
+```
+
+**第10页：实战练习**
+练习1：编写计算器程序
+练习2：实现猜数字游戏
+
+**第11页：总结**
+• Python入门其实很简单
+• 多动手写代码是关键
+• 善用搜索引擎和文档`,
+    product: `📦 **产品介绍PPT大纲**
+
+**第1页：封面**
+标题：智眸AI智能摄像头
+副标题：新一代AI视觉感知解决方案
+
+**第2页：产品概览**
+• 一款搭载AI芯片的智能摄像头
+• 端侧AI处理，保护隐私
+• 适用于家庭、店铺、办公等多场景
+
+**第3页：核心功能-智能识别**
+• 人脸识别：毫秒级响应，准确率99.8%
+• 姿态检测：跌倒检测、异常行为预警
+• 物体识别：200+常见物体识别
+
+**第4页：核心功能-智能追踪**
+• 自动追踪移动物体
+• 360°全景巡航
+• 智能分区警戒
+
+**第5页：技术优势**
+• 自研AI芯片，算力强大
+• 端侧处理，无需云端
+• 低功耗设计，待机持久
+• 军工级加密，隐私安全
+
+**第6页：规格参数**
+• 分辨率：4K超清
+• 视角：360°全景
+• 夜视：全彩夜视30米
+• 连接：WiFi6/有线
+
+**第7页：适用场景**
+• 家庭安防：宝宝监护、老人看护
+• 店铺管理：客流统计、异常预警
+• 办公管理：考勤打卡、会议记录
+
+**第8页：竞品对比**
+| 功能 | 智眸 | 竞品A | 竞品B |
+|------|------|-------|-------|
+| AI识别 | ✓ | ✗ | ✓ |
+| 端侧处理 | ✓ | ✗ | ✗ |
+| 隐私加密 | ✓ | ✓ | ✗ |
+
+**第9页：联系我们**
+官网：www.zhimouai.com
+电话：400-XXX-XXXX
+邮箱：contact@zhimouai.com`,
+    plan: `💼 **奶茶店创业计划书PPT大纲**
+
+**第1页：封面**
+标题：茶悦时光奶茶店商业计划书
+副标题：健康茶饮新体验
+汇报人：XXX | 日期：2024年6月
+
+**第2页：执行摘要**
+• 项目名称：茶悦时光
+• 项目定位：健康、鲜制茶饮
+• 目标市场：18-35岁年轻消费群体
+• 预计投资：30万元
+• 预计回本周期：8-12个月
+
+**第3页：市场分析**
+• 茶饮市场规模：1000亿+
+• 年增长率：20%以上
+• 消费升级趋势明显
+• 健康茶饮需求增长
+
+**第4页：目标客户画像**
+• 年龄：18-35岁
+• 性别：女性为主（65%）
+• 消费频次：1-3次/周
+• 注重品质和健康
+
+**第5页：产品介绍**
+• 鲜果茶系列
+• 奶盖茶系列
+• 纯茶系列
+• 季节限定款
+
+**第6页：商业模式**
+• 线下门店+外卖平台
+• 会员体系运营
+• 社交媒体营销
+• 联名合作推广
+
+**第7页：选址与装修**
+• 优先位置：商场、学校、写字楼周边
+• 店面面积：20-40㎡
+• 装修风格：清新自然风
+• 投资预算：10万元
+
+**第8页：团队介绍**
+• 创始人：XXX（多年餐饮经验）
+• 产品研发：专业茶饮师
+• 运营团队：3人
+
+**第9页：财务预测**
+• 首年营收目标：80万元
+• 毛利率：60-65%
+• 运营成本：30万元
+• 预计利润：18万元
+
+**第10页：融资需求**
+• 融资金额：20万元
+• 出让股份：15%
+• 资金用途：设备采购、装修、原料备货`,
+    summary: `📊 **项目总结报告PPT大纲**
+
+**第1页：封面**
+标题：智慧社区项目总结
+副标题：2024年上半年
+
+**第2页：汇报概览**
+• 项目周期：2024.01-2024.06
+• 项目目标：建成10个智慧社区示范点
+• 目标完成率：120%
+
+**第3页：核心成果**
+• 建成智慧社区：12个（超额2个）
+• 覆盖居民户数：50000+户
+• 用户满意度：96.5%
+• 获得市级示范项目称号
+
+**第4页：数据成果**
+• 智能设备安装：2000+台
+• 平台注册用户：30000+人
+• 日均活跃用户：8000+人
+• 事件响应时间：缩短70%
+
+**第5页：创新亮点**
+• AI人脸识别门禁系统
+• 智能垃圾分类系统
+• 远程医疗问诊服务
+• 社区养老智慧化方案
+
+**第6页：经验总结**
+✅ 需求调研要充分
+✅ 技术方案要可行
+✅ 用户体验要优先
+✅ 运营服务要跟上
+
+**第7页：教训反思**
+⚠️ 部分硬件选型不够成熟
+⚠️ 工期把控有待加强
+⚠️ 培训推广力度不足
+
+**第8页：下半年计划**
+• 拓展至50个社区
+• 完成平台2.0升级
+• 引入更多增值服务
+• 打造标杆案例`,
+    custom: `📄 **PPT内容大纲**
+
+根据您提供的主题和要求，以下是生成的PPT内容结构：
+
+[具体内容会根据您的输入提示词自动生成]
+
+---
+💡 **使用提示**：
+• 点击"看示例"按钮查看各场景的完整示例
+• 在输入框中描述您的具体需求
+• 点击"生成PPT内容"获取完整大纲`
+};
 
 // DOM Elements
-const gamesGrid = document.getElementById('gamesGrid');
-const phoneReviewsGrid = document.getElementById('phoneReviews');
-const pcPartsGrid = document.getElementById('pcParts');
+const templatesGrid = document.getElementById('templatesGrid');
 const toolsGrid = document.getElementById('toolsGrid');
-const searchInput = document.getElementById('searchInput');
-const tabBtns = document.querySelectorAll('.tab-btn');
+const guidesGrid = document.getElementById('guidesGrid');
+const pptPrompt = document.getElementById('pptPrompt');
+const charCount = document.getElementById('charCount');
+const generateBtn = document.getElementById('generateBtn');
+const clearBtn = document.getElementById('clearBtn');
+const exampleBtn = document.getElementById('exampleBtn');
+const resultSection = document.getElementById('result');
+const resultContent = document.getElementById('resultContent');
+const sceneTabs = document.querySelectorAll('.scene-tab');
 
-// Render Game Card
-function renderGameCard(item) {
-    const badgeClass = item.badge === 'hot' ? 'hot' : (item.badge === 'new' ? 'new' : (item.badge === 'cheap' ? 'cheap' : ''));
-    const badgeText = item.badge === 'hot' ? '热门' : (item.badge === 'new' ? '新' : (item.badge === 'cheap' ? '低价' : ''));
+// Render Template Card
+function renderTemplateCard(item) {
+    const badgeClass = item.badge === 'hot' ? 'hot' : (item.badge === 'new' ? 'new' : '');
+    const badgeText = item.badge === 'hot' ? '热门' : (item.badge === 'new' ? '新' : '');
 
     return `
-        <div class="game-card" data-category="${item.category}">
-            <div class="game-image">
-                ${item.icon}
-                ${badgeText ? `<span class="game-badge ${badgeClass}">${badgeText}</span>` : ''}
-            </div>
-            <div class="game-content">
-                <div class="game-category">${item.typeName}</div>
-                <div class="game-name">${item.name}</div>
-                <div class="game-description">${item.description}</div>
-                <div class="game-tags">
-                    ${item.tags.map(tag => `<span class="game-tag">${tag}</span>`).join('')}
+        <div class="template-card" data-example="${item.example}" data-scene="${item.id}">
+            <div class="template-icon">${item.icon}</div>
+            <div class="template-content">
+                <div class="template-header">
+                    <h3 class="template-name">${item.name}</h3>
+                    ${badgeText ? `<span class="template-badge ${badgeClass}">${badgeText}</span>` : ''}
                 </div>
-                <div class="game-footer">
-                    <span class="game-type">${item.typeName}</span>
-                    <a href="${item.link || '#'}" target="_blank" class="game-link">查看 →</a>
+                <p class="template-desc">${item.description}</p>
+                <div class="template-meta">
+                    <span class="meta-item">📄 ${item.pages}</span>
+                    <span class="meta-item">🎨 ${item.style}</span>
                 </div>
             </div>
         </div>
     `;
 }
 
-// Render Review Card
-function renderReviewCard(item) {
-    const badgeClass = item.badge === 'hot' ? 'hot' : (item.badge === 'recommended' ? 'recommended' : (item.badge === 'cheap' ? 'cheap' : ''));
-    const badgeText = item.badge === 'hot' ? '热门' : (item.badge === 'recommended' ? '推荐' : (item.badge === 'cheap' ? '性价比' : ''));
+// Render Tool Card
+function renderToolCard(item) {
+    const badgeClass = item.badge === 'hot' ? 'hot' : (item.badge === 'new' ? 'new' : '');
+    const badgeText = item.badge === 'hot' ? '热门' : (item.badge === 'new' ? '新' : '');
 
     return `
-        <div class="review-card" data-category="${item.category}">
-            <div class="review-header">
-                <div class="review-icon">${item.icon}</div>
-                <div class="review-info">
-                    <div class="review-name">${item.name}</div>
-                    <div class="review-type">${item.typeName}</div>
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">${item.icon}</div>
+                <div class="tool-info">
+                    <div class="tool-type">${item.typeName}</div>
+                    <div class="tool-name">${item.name}</div>
                 </div>
-                ${badgeText ? `<span class="review-badge ${badgeClass}">${badgeText}</span>` : ''}
+                ${badgeText ? `<span class="tool-badge ${badgeClass}">${badgeText}</span>` : ''}
             </div>
-            <div class="review-body">
-                <div class="review-desc">${item.description}</div>
-                <div class="review-tags">
-                    ${item.tags.map(tag => `<span class="review-tag">${tag}</span>`).join('')}
+            <p class="tool-desc">${item.description}</p>
+            <div class="tool-tags">
+                ${item.tags.map(tag => `<span class="tool-tag">${tag}</span>`).join('')}
+            </div>
+            <a href="${item.link}" target="_blank" class="tool-link">立即使用 →</a>
+        </div>
+    `;
+}
+
+// Render Guide Card
+function renderGuideCard(item) {
+    const badgeClass = item.badge === 'hot' ? 'hot' : (item.badge === 'new' ? 'new' : '');
+    const badgeText = item.badge === 'hot' ? '热门' : (item.badge === 'new' ? '新' : '');
+
+    return `
+        <div class="guide-card">
+            <div class="guide-icon">${item.icon}</div>
+            <div class="guide-content">
+                <div class="guide-header">
+                    <h3 class="guide-name">${item.name}</h3>
+                    ${badgeText ? `<span class="guide-badge ${badgeClass}">${badgeText}</span>` : ''}
                 </div>
-                ${item.games ? `<div class="review-games"><strong>适配游戏：</strong>${item.games}</div>` : ''}
-                ${item.price ? `<div class="review-price">${item.price}</div>` : ''}
+                <p class="guide-desc">${item.description}</p>
+                <div class="guide-tags">
+                    ${item.tags.map(tag => `<span class="guide-tag">${tag}</span>`).join('')}
+                </div>
             </div>
         </div>
     `;
 }
 
-// Render Games by Tab
-function renderGamesByTab(tab) {
-    let games = [];
-    if (tab === 'all-games') {
-        games = gamesData.filter(g => ['steam', 'mobile-game', 'pc-game'].includes(g.category));
-    } else {
-        games = gamesData.filter(g => g.category === tab);
-    }
-    gamesGrid.innerHTML = games.map(renderGameCard).join('');
+// Show result
+function showResult(content) {
+    resultSection.style.display = 'block';
+    resultContent.innerHTML = `<pre class="result-text">${content}</pre>`;
+    resultSection.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Tab switching
-tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderGamesByTab(btn.dataset.tab);
+// Copy result
+document.getElementById('copyResult')?.addEventListener('click', () => {
+    const text = resultContent.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert('已复制到剪贴板！');
     });
+});
+
+// Download result
+document.getElementById('downloadResult')?.addEventListener('click', () => {
+    const text = resultContent.innerText;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'PPT内容大纲.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+});
+
+// Character count
+pptPrompt?.addEventListener('input', () => {
+    const count = pptPrompt.value.length;
+    charCount.textContent = count;
+    if (count > 2000) {
+        charCount.style.color = '#ef4444';
+    } else {
+        charCount.style.color = '';
+    }
+});
+
+// Clear input
+clearBtn?.addEventListener('click', () => {
+    pptPrompt.value = '';
+    charCount.textContent = '0';
+    resultSection.style.display = 'none';
+});
+
+// Scene tab switching
+sceneTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        sceneTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const scene = tab.dataset.scene;
+        const templates = templatesData.find(t => t.name === (scene === 'work' ? '工作汇报' : 
+            scene === 'study' ? '教育培训' : 
+            scene === 'product' ? '产品介绍' : 
+            scene === 'plan' ? '商业计划' : 
+            scene === 'summary' ? '总结报告' : ''));
+        
+        if (scene !== 'custom' && templates) {
+            pptPrompt.placeholder = templates.example;
+        } else {
+            pptPrompt.placeholder = '描述你想要制作的PPT内容，例如：帮我制作一份关于人工智能发展趋势的演示文稿，包含技术演进、应用场景、未来展望等部分';
+        }
+    });
+});
+
+// Example button
+exampleBtn?.addEventListener('click', () => {
+    const activeTab = document.querySelector('.scene-tab.active');
+    const scene = activeTab?.dataset.scene || 'work';
+    
+    const sceneMap = {
+        'work': 'work',
+        'study': 'study',
+        'product': 'product',
+        'plan': 'plan',
+        'summary': 'summary',
+        'custom': 'custom'
+    };
+    
+    const exampleKey = sceneMap[scene] || 'custom';
+    showResult(exampleResults[exampleKey]);
+});
+
+// Generate button
+generateBtn?.addEventListener('click', () => {
+    const prompt = pptPrompt.value.trim();
+    if (!prompt) {
+        alert('请输入PPT主题或需求描述');
+        return;
+    }
+    
+    // 模拟生成过程
+    generateBtn.innerHTML = '<span class="btn-icon">⏳</span> 生成中...';
+    generateBtn.disabled = true;
+    
+    setTimeout(() => {
+        const activeTab = document.querySelector('.scene-tab.active');
+        const scene = activeTab?.dataset.scene || 'custom';
+        
+        let template = promptTemplates[scene] || promptTemplates.custom;
+        const content = template.replace('{topic}', prompt);
+        
+        // 模拟AI生成的内容
+        const generatedContent = generatePPContent(prompt, scene);
+        showResult(generatedContent);
+        
+        generateBtn.innerHTML = '<span class="btn-icon">✨</span> 生成PPT内容';
+        generateBtn.disabled = false;
+    }, 1500);
+});
+
+// Generate PPT content
+function generatePPContent(prompt, scene) {
+    const sceneNames = {
+        work: '工作汇报',
+        study: '教育培训',
+        product: '产品介绍',
+        plan: '商业计划',
+        summary: '总结报告',
+        custom: '演示文稿'
+    };
+    
+    const topic = prompt.slice(0, 50);
+    
+    return `📊 **${sceneNames[scene] || 'PPT'}大纲**
+主题：${topic}
+
+---
+**第1页：封面**
+标题：${topic}
+副标题：${sceneNames[scene] || '演示文稿'} | 日期：${new Date().toLocaleDateString('zh-CN')}
+
+---
+**第2页：目录**
+一、内容概览
+二、核心要点
+三、详细阐述
+四、总结与展望
+
+---
+**第3页：内容概览**
+• ${prompt.slice(0, 30)}...
+• 本演示文稿共包含X页
+• 涵盖主要方面和关键信息
+
+---
+**第4-7页：核心要点**
+【要点一】背景与目的
+• 说明项目/主题的背景
+• 阐述核心目标和意义
+
+【要点二】主要内容
+• 详细展开主要板块
+• 配合数据/案例说明
+
+【要点三】实施方法
+• 具体的方法和路径
+• 关键步骤和节点
+
+【要点四】成果展示
+• 已取得的主要成果
+• 数据支撑和效果
+
+---
+**第8-9页：详细阐述**
+根据具体内容展开详细说明，包括：
+• 背景分析
+• 现状描述
+• 问题分析
+• 解决方案
+
+---
+**第10页：总结与展望**
+• 主要收获和结论
+• 未来发展方向
+• 后续行动计划
+
+---
+**第11页：结束页**
+感谢聆听
+欢迎交流讨论
+
+---
+💡 **提示**：以上内容为AI模拟生成，实际使用时可结合具体需求调整。建议配合Gamma、Tome等AI PPT工具生成正式演示文稿。`;
+}
+
+// Template card click - fill prompt
+templatesGrid?.addEventListener('click', (e) => {
+    const card = e.target.closest('.template-card');
+    if (card) {
+        const example = card.dataset.example;
+        pptPrompt.value = example;
+        charCount.textContent = example.length;
+        
+        // Switch to custom tab
+        sceneTabs.forEach(t => t.classList.remove('active'));
+        document.querySelector('[data-scene="custom"]')?.classList.add('active');
+        
+        pptPrompt.focus();
+    }
 });
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    renderGamesByTab('all-games');
-    toolsGrid.innerHTML = gamesData.filter(g => g.category === 'tool').map(renderGameCard).join('');
+    templatesGrid.innerHTML = templatesData.map(renderTemplateCard).join('');
+    toolsGrid.innerHTML = toolsData.map(renderToolCard).join('');
+    guidesGrid.innerHTML = guidesData.map(renderGuideCard).join('');
 });
